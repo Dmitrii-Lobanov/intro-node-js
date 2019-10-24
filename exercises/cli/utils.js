@@ -2,8 +2,16 @@ const fs = require('fs')
 const path = require('path')
 
 const contactsLocation = path.join(__dirname, 'contacts.json')
-const getContacts = () => JSON.parse(fs.readFileSync(contactsLocation))
-const saveContacts = (contacts) => fs.writeFileSync(contactsLocation, JSON.stringify(contacts, null, 2))
 
-module.exports = {contactsLocation, getContacts, saveContacts}
+const getContacts = () => {
+  const contacts = fs.readFileSync(contactsLocation)
+    .toString()
+  return JSON.parse(contacts);
+}
+
+const saveContacts = (contacts) => {
+  fs.writeFileSync(contactsLocation, JSON.stringify(contacts));
+}
+
+module.exports = { contactsLocation, getContacts, saveContacts }
 
